@@ -21,11 +21,11 @@ func main() {
     client = zoop.NewClient("<ApiKey>", "<MarketPlaceId>", "<SellerId>")
     
     params := &zoop.CreditCardParams{
-        HolderName: "John Doe",
+        HolderName:      "John Doe",
         ExpirationMonth: "10",
-        ExpirationYear: "20",
-        CardNumber: "4539003370725497",
-        SecurityCode: "123",
+        ExpirationYear:  "20",
+        CardNumber:      "4539003370725497",
+        SecurityCode:    "123",
     }
 
     token, err := client.NewCardToken(params)
