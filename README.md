@@ -18,9 +18,9 @@ import (
 
 func main() {
     
-    client = NewClient("<ApiKey>", "<MarketPlaceId>", "<SellerId>")
+    client = zoop.NewClient("<ApiKey>", "<MarketPlaceId>", "<SellerId>")
     
-    params := &CreditCardParams{
+    params := &zoop.CreditCardParams{
         HolderName: "John Doe",
         ExpirationMonth: "10",
         ExpirationYear: "20",
