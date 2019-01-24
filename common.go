@@ -12,3 +12,9 @@ type Pagination struct {
 	QueryCount int  `json:"query_count"`
 	Total      int  `json:"total"`
 }
+
+type DeleteResponse struct {
+	Id       string `json:"id"`
+	Resource string `json:"resource"`
+	Deleted  bool   `json:"deleted"`
+}

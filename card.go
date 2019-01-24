@@ -1,6 +1,33 @@
 package zoop
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
+
+const (
+	cardPath   = "marketplaces/%s/cards"
+	cardPathId = "marketplaces/%s/cards/%s"
+)
+
+func (c *Client) SetCustomerCard(customer, token string) (*CreditCardModel, error) {
+	model := new(CreditCardModel)
+	params := &Params{"token": token, "customer": customer}
+	err := c.Post(fmt.Sprintf(cardPath, c.MarketPlaceId), params, nil, model)
+	return model, err
+}
+
+func (c *Client) GetCreditCard(id string) (*CreditCardModel, error) {
+	model := new(CreditCardModel)
+	err := c.Get(fmt.Sprintf(cardPathId, c.MarketPlaceId, id), nil, nil, model)
+	return model, err
+}
+
+func (c *Client) DelCreditCard(id string) (*DeleteResponse, error) {
+	del := new(DeleteResponse)
+	err := c.Delete(fmt.Sprintf(cardPathId, c.MarketPlaceId, id), nil, nil, del)
+	return del, err
+}
 
 type CreditCardParams struct {
 	HolderName      string `json:"holder_name"`

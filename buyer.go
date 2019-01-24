@@ -29,9 +29,10 @@ func (c *Client) SetBuyer(id string, params *BuyerParams) (*BuyerModel, error) {
 	return model, err
 }
 
-func (c *Client) DelBuyer(id string) error {
-	err := c.Delete(fmt.Sprintf(buyerPathId, c.MarketPlaceId, id), nil, nil, nil)
-	return err
+func (c *Client) DelBuyer(id string) (*DeleteResponse, error) {
+	del := new(DeleteResponse)
+	err := c.Delete(fmt.Sprintf(buyerPathId, c.MarketPlaceId, id), nil, nil, del)
+	return del, err
 }
 
 func (c *Client) ListBuyer() (*BuyersList, error) {
