@@ -18,23 +18,23 @@ import (
 
 func main() {
     
-	client = NewClient("<ApiKey>", "<MarketPlaceId>", "<SellerId>")
+    client = NewClient("<ApiKey>", "<MarketPlaceId>", "<SellerId>")
     
-	params := &CreditCardParams{
-		HolderName: "John Doe",
-		ExpirationMonth: "10",
-		ExpirationYear: "20",
-		CardNumber: "4539003370725497",
-		SecurityCode: "123",
-	}
+    params := &CreditCardParams{
+        HolderName: "John Doe",
+        ExpirationMonth: "10",
+        ExpirationYear: "20",
+        CardNumber: "4539003370725497",
+        SecurityCode: "123",
+    }
 
-	token, err := client.NewCardToken(params)
-	if err != nil {
-		panic(err)
-	}
+    token, err := client.NewCardToken(params)
+    if err != nil {
+        panic(err)
+    }
   
-	fmt.Println("Token ID:", token.Id)
-	fmt.Println("Card ID:", token.Card.Id)
+    fmt.Println("Token ID:", token.Id)
+    fmt.Println("Card ID:", token.Card.Id)
   
 }
 ```
