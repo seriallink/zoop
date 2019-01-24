@@ -33,8 +33,8 @@ func main() {
 		panic(err)
 	}
   
-  fmt.Println("Token ID:", token.Id)
-  fmt.Println("Card ID:", token.Card.Id)
+	fmt.Println("Token ID:", token.Id)
+	fmt.Println("Card ID:", token.Card.Id)
   
 }
 ```
