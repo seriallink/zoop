@@ -33,12 +33,12 @@ type Customer struct {
 	DeclineOnFailSecurityCode bool        `json:"decline_on_fail_security_code"`
 	DeclineOnFailZipCode      bool        `json:"decline_on_fail_zip_code"`
 	Delinquent                bool        `json:"delinquent"`
-	PaymentMethods            string      `json:"payment_methods"`
+	PaymentMethods            interface{} `json:"payment_methods"` // TODO: couldn't find the correct datatype
 	DefaultDebit              string      `json:"default_debit"`
 	DefaultCredit             string      `json:"default_credit"`
 	MerchantCode              string      `json:"merchant_code"`
 	TerminalCode              string      `json:"terminal_code"`
-	MarketPlaceId             string      `json:"market_place_id"`
+	MarketplaceId             string      `json:"marketplace_id"`
 	Metadata                  interface{} `json:"metadata"`
 	BusinessAddress           *Address    `json:"business_address"`
 	CreatedAt                 time.Time   `json:"created_at"`

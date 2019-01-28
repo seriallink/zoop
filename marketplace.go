@@ -37,6 +37,6 @@ type Marketplace struct {
 
 func (c *Client) GetMarketplace() (*Marketplace, error) {
 	model := new(Marketplace)
-	err := c.Get(fmt.Sprintf("marketplaces/%s", c.MarketPlaceId), nil, nil, model)
+	err := c.Get(fmt.Sprintf("marketplaces/%s", c.MarketplaceId), nil, nil, model)
 	return model, err
 }

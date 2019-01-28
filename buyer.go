@@ -11,33 +11,38 @@ const (
 	buyerPathId = "marketplaces/%s/buyers/%s"
 )
 
+// Get buyer's detail
 func (c *Client) GetBuyer(id string) (*Buyer, error) {
 	model := new(Buyer)
-	err := c.Get(fmt.Sprintf(buyerPathId, c.MarketPlaceId, id), nil, nil, model)
+	err := c.Get(fmt.Sprintf(buyerPathId, c.MarketplaceId, id), nil, nil, model)
 	return model, err
 }
 
-func (c *Client) AddBuyer(params *BuyerParams) (*Buyer, error) {
+// Create a new buyer
+func (c *Client) NewBuyer(params *BuyerParams) (*Buyer, error) {
 	model := new(Buyer)
-	err := c.Post(fmt.Sprintf(buyerPath, c.MarketPlaceId), params, nil, model)
+	err := c.Post(fmt.Sprintf(buyerPath, c.MarketplaceId), params, nil, model)
 	return model, err
 }
 
+// Set buyer's detail
 func (c *Client) SetBuyer(id string, params *BuyerParams) (*Buyer, error) {
 	model := new(Buyer)
-	err := c.Put(fmt.Sprintf(buyerPathId, c.MarketPlaceId, id), params, nil, model)
+	err := c.Put(fmt.Sprintf(buyerPathId, c.MarketplaceId, id), params, nil, model)
 	return model, err
 }
 
+// Delete buyer by ID
 func (c *Client) DelBuyer(id string) (*DeleteResponse, error) {
 	del := new(DeleteResponse)
-	err := c.Delete(fmt.Sprintf(buyerPathId, c.MarketPlaceId, id), nil, nil, del)
+	err := c.Delete(fmt.Sprintf(buyerPathId, c.MarketplaceId, id), nil, nil, del)
 	return del, err
 }
 
+// List buyers from marketplace
 func (c *Client) ListBuyer() (*BuyersList, error) {
 	list := new(BuyersList)
-	err := c.Get(fmt.Sprintf(buyerPath, c.MarketPlaceId), nil, nil, list)
+	err := c.Get(fmt.Sprintf(buyerPath, c.MarketplaceId), nil, nil, list)
 	return list, err
 }
 
@@ -67,7 +72,7 @@ type Buyer struct {
 	Facebook       string      `json:"facebook"`
 	Twitter        string      `json:"twitter"`
 	Delinquent     bool        `json:"delinquent"`
-	PaymentMethods interface{} `json:"payment_methods"` // TODO: set correct type
+	PaymentMethods interface{} `json:"payment_methods"` // TODO: couldn't find the correct datatype
 	DefaultDebit   string      `json:"default_debit"`
 	DefaultCredit  string      `json:"default_credit"`
 	DeliveryMethod string      `json:"default_receipt_delivery_method"`

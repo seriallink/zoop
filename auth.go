@@ -7,7 +7,7 @@ import (
 
 type Client struct {
 	ApiKey        string
-	MarketPlaceId string
+	MarketplaceId string
 	SellerId      string
 	BasicAuth     string
 }
@@ -16,7 +16,7 @@ func NewClient(key, mkt, seller string) *Client {
 
 	return &Client{
 		ApiKey:        key,
-		MarketPlaceId: mkt,
+		MarketplaceId: mkt,
 		SellerId:      seller,
 		BasicAuth:     fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(key+":"))),
 	}

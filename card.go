@@ -13,19 +13,19 @@ const (
 func (c *Client) SetCustomerCard(customer, token string) (*CreditCard, error) {
 	model := new(CreditCard)
 	params := &Params{"token": token, "customer": customer}
-	err := c.Post(fmt.Sprintf(cardPath, c.MarketPlaceId), params, nil, model)
+	err := c.Post(fmt.Sprintf(cardPath, c.MarketplaceId), params, nil, model)
 	return model, err
 }
 
 func (c *Client) GetCreditCard(id string) (*CreditCard, error) {
 	model := new(CreditCard)
-	err := c.Get(fmt.Sprintf(cardPathId, c.MarketPlaceId, id), nil, nil, model)
+	err := c.Get(fmt.Sprintf(cardPathId, c.MarketplaceId, id), nil, nil, model)
 	return model, err
 }
 
 func (c *Client) DelCreditCard(id string) (*DeleteResponse, error) {
 	del := new(DeleteResponse)
-	err := c.Delete(fmt.Sprintf(cardPathId, c.MarketPlaceId, id), nil, nil, del)
+	err := c.Delete(fmt.Sprintf(cardPathId, c.MarketplaceId, id), nil, nil, del)
 	return del, err
 }
 

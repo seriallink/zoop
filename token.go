@@ -7,13 +7,13 @@ import (
 
 func (c *Client) NewCardToken(params *CreditCardParams) (*Token, error) {
 	model := new(Token)
-	err := c.Post(fmt.Sprintf("marketplaces/%s/cards/tokens", c.MarketPlaceId), params, nil, model)
+	err := c.Post(fmt.Sprintf("marketplaces/%s/cards/tokens", c.MarketplaceId), params, nil, model)
 	return model, err
 }
 
 func (c *Client) GetToken(id string) (*Token, error) {
 	model := new(Token)
-	err := c.Get(fmt.Sprintf("marketplaces/%s/tokens/%s", c.MarketPlaceId, id), nil, nil, model)
+	err := c.Get(fmt.Sprintf("marketplaces/%s/tokens/%s", c.MarketplaceId, id), nil, nil, model)
 	return model, err
 }
 
