@@ -39,8 +39,8 @@ type Customer struct {
 	MerchantCode              string      `json:"merchant_code"`
 	TerminalCode              string      `json:"terminal_code"`
 	MarketplaceId             string      `json:"marketplace_id"`
-	Metadata                  interface{} `json:"metadata"`
 	BusinessAddress           *Address    `json:"business_address"`
+	Metadata                  interface{} `json:"metadata"`
 	CreatedAt                 time.Time   `json:"created_at"`
 	UpdatedAt                 time.Time   `json:"updated_at"`
 	Info
