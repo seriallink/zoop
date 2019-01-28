@@ -11,20 +11,20 @@ const (
 	buyerPathId = "marketplaces/%s/buyers/%s"
 )
 
-func (c *Client) GetBuyer(id string) (*BuyerModel, error) {
-	model := new(BuyerModel)
+func (c *Client) GetBuyer(id string) (*Buyer, error) {
+	model := new(Buyer)
 	err := c.Get(fmt.Sprintf(buyerPathId, c.MarketPlaceId, id), nil, nil, model)
 	return model, err
 }
 
-func (c *Client) AddBuyer(params *BuyerParams) (*BuyerModel, error) {
-	model := new(BuyerModel)
+func (c *Client) AddBuyer(params *BuyerParams) (*Buyer, error) {
+	model := new(Buyer)
 	err := c.Post(fmt.Sprintf(buyerPath, c.MarketPlaceId), params, nil, model)
 	return model, err
 }
 
-func (c *Client) SetBuyer(id string, params *BuyerParams) (*BuyerModel, error) {
-	model := new(BuyerModel)
+func (c *Client) SetBuyer(id string, params *BuyerParams) (*Buyer, error) {
+	model := new(Buyer)
 	err := c.Put(fmt.Sprintf(buyerPathId, c.MarketPlaceId, id), params, nil, model)
 	return model, err
 }
@@ -52,7 +52,7 @@ type BuyerParams struct {
 	Address     *Address `json:"address,omitempty"`
 }
 
-type BuyerModel struct {
+type Buyer struct {
 	Id             string      `json:"id"`
 	FirstName      string      `json:"first_name"`
 	LastName       string      `json:"last_name"`
@@ -79,7 +79,7 @@ type BuyerModel struct {
 }
 
 type BuyersList struct {
-	Buyers []BuyerModel `json:"items"`
+	Buyers []Buyer `json:"items"`
 	Info
 	Pagination
 }

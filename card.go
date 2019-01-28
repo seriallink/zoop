@@ -10,15 +10,15 @@ const (
 	cardPathId = "marketplaces/%s/cards/%s"
 )
 
-func (c *Client) SetCustomerCard(customer, token string) (*CreditCardModel, error) {
-	model := new(CreditCardModel)
+func (c *Client) SetCustomerCard(customer, token string) (*CreditCard, error) {
+	model := new(CreditCard)
 	params := &Params{"token": token, "customer": customer}
 	err := c.Post(fmt.Sprintf(cardPath, c.MarketPlaceId), params, nil, model)
 	return model, err
 }
 
-func (c *Client) GetCreditCard(id string) (*CreditCardModel, error) {
-	model := new(CreditCardModel)
+func (c *Client) GetCreditCard(id string) (*CreditCard, error) {
+	model := new(CreditCard)
 	err := c.Get(fmt.Sprintf(cardPathId, c.MarketPlaceId, id), nil, nil, model)
 	return model, err
 }
@@ -37,7 +37,7 @@ type CreditCardParams struct {
 	SecurityCode    string `json:"security_code"`
 }
 
-type CreditCardModel struct {
+type CreditCard struct {
 	Id              string      `json:"id"`
 	HolderName      string      `json:"holder_name"`
 	ExpirationMonth string      `json:"expiration_month"`
