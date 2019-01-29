@@ -11,7 +11,8 @@ type Key struct {
 	ProductionKey            string      `json:"production_key"`
 	PublishableProductionKey string      `json:"publishable_production_key"`
 	Metadata                 interface{} `json:"metadata"`
+	Resource                 string      `json:"resource"`
+	Uri                      string      `json:"uri"`
 	CreatedAt                time.Time   `json:"created_at"`
 	UpdatedAt                time.Time   `json:"updated_at"`
-	Info
 }

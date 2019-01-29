@@ -84,42 +84,46 @@ func (c *Client) ListSellerTransactions() (*TransactionsList, error) {
 }
 
 type TransactionParams struct {
-	Amount                       int                 `json:"amount"`
-	Currency                     string              `json:"currency"`
-	Description                  string              `json:"description"`
-	PaymentType                  PaymentType         `json:"payment_type"`
-	Capture                      bool                `json:"capture"`
-	OnBehalfOf                   string              `json:"on_behalf_of"` // seller_id
-	ReferenceId                  string              `json:"reference_id,omitempty"`
-	StatementDescriptor          string              `json:"statement_descriptor,omitempty"`
-	Customer                     string              `json:"customer,omitempty"`
-	Token                        string              `json:"token,omitempty"`
-	Metadata                     interface{}         `json:"metadata,omitempty"`
-	PaymentMethodExpirationDate  time.Time           `json:"payment_method.expiration_date,omitempty"`
-	PaymentMethodTopInstructions []string            `json:"payment_method.top_instructions,omitempty"`
-	SourceUsage                  UsageType           `json:"source.usage,omitempty"`
-	SourceAmount                 int                 `json:"source.amount,omitempty"`
-	SourceCurrency               string              `json:"source.currency,omitempty"`
-	SourceDescription            string              `json:"source.description,omitempty"`
-	SourceType                   SourceType          `json:"source.type"`
-	SourceCapture                bool                `json:"source.capture,omitempty"`
-	SourceOnBehalfOf             string              `json:"source.on_behalf_of,omitempty"`
-	SourceReferenceId            string              `json:"source.reference_id,omitempty"`
-	SourceCardId                 string              `json:"source.card.id,omitempty"`
-	SourceCardHolderName         string              `json:"source.card.holder_name,omitempty"`
-	SourceCardExpirationMonth    string              `json:"source.card.expiration_month,omitempty"`
-	SourceCardExpirationYear     string              `json:"source.card.expiration_year,omitempty"`
-	SourceCardCardNumber         string              `json:"source.card.card_number,omitempty"`
-	SourceCardSecurityCode       string              `json:"source.card.security_code,omitempty"`
-	SourceCardAmount             int                 `json:"source.card.amount,omitempty"`
-	SourceInstallmentPlanMode    InstallmentPlanType `json:"source.installment_plan.mode,omitempty"`
-	SourceNumberOfInstallments   int                 `json:"source.installment_plan.number_installments,omitempty"`
-	SourceStatementDescriptor    string              `json:"source.statement_descriptor,omitempty"`
-	SourceCustomerId             string              `json:"source.customer.id,omitempty"`
-	SourceCustomerAmount         int                 `json:"source.customer.amount,omitempty"`
-	SourceTokenId                string              `json:"source.token.id,omitempty"`
-	SourceTokenAmount            int                 `json:"source.token.amount,omitempty"`
-	SourceMetadata               interface{}         `json:"source.metadata,omitempty"`
+	Amount                     int                  `json:"amount"`
+	Currency                   string               `json:"currency"`
+	Description                string               `json:"description"`
+	PaymentType                PaymentType          `json:"payment_type"`
+	Capture                    bool                 `json:"capture"`
+	OnBehalfOf                 string               `json:"on_behalf_of"` // seller_id
+	ReferenceId                string               `json:"reference_id,omitempty"`
+	StatementDescriptor        string               `json:"statement_descriptor,omitempty"`
+	Customer                   string               `json:"customer,omitempty"`
+	Token                      string               `json:"token,omitempty"`
+	Metadata                   interface{}          `json:"metadata,omitempty"`
+	SourceUsage                UsageType            `json:"source.usage,omitempty"`
+	SourceAmount               int                  `json:"source.amount,omitempty"`
+	SourceCurrency             string               `json:"source.currency,omitempty"`
+	SourceDescription          string               `json:"source.description,omitempty"`
+	SourceType                 SourceType           `json:"source.type"`
+	SourceCapture              bool                 `json:"source.capture,omitempty"`
+	SourceOnBehalfOf           string               `json:"source.on_behalf_of,omitempty"`
+	SourceReferenceId          string               `json:"source.reference_id,omitempty"`
+	SourceCardId               string               `json:"source.card.id,omitempty"`
+	SourceCardHolderName       string               `json:"source.card.holder_name,omitempty"`
+	SourceCardExpirationMonth  string               `json:"source.card.expiration_month,omitempty"`
+	SourceCardExpirationYear   string               `json:"source.card.expiration_year,omitempty"`
+	SourceCardCardNumber       string               `json:"source.card.card_number,omitempty"`
+	SourceCardSecurityCode     string               `json:"source.card.security_code,omitempty"`
+	SourceCardAmount           int                  `json:"source.card.amount,omitempty"`
+	SourceInstallmentPlanMode  InstallmentPlanType  `json:"source.installment_plan.mode,omitempty"`
+	SourceNumberOfInstallments int                  `json:"source.installment_plan.number_installments,omitempty"`
+	SourceStatementDescriptor  string               `json:"source.statement_descriptor,omitempty"`
+	SourceCustomerId           string               `json:"source.customer.id,omitempty"`
+	SourceCustomerAmount       int                  `json:"source.customer.amount,omitempty"`
+	SourceTokenId              string               `json:"source.token.id,omitempty"`
+	SourceTokenAmount          int                  `json:"source.token.amount,omitempty"`
+	SourceMetadata             interface{}          `json:"source.metadata,omitempty"`
+	PaymentMethod              *PaymentMethodParams `json:"payment_method,omitempty"`
+}
+
+type PaymentMethodParams struct {
+	ExpirationDate  time.Time `json:"expiration_date,omitempty"`
+	TopInstructions []string  `json:"top_instructions,omitempty"`
 }
 
 type Transaction struct {
@@ -152,35 +156,50 @@ type Transaction struct {
 	FeeDetails           []FeeDetail           `json:"fee_details"`
 	LocationLatitude     string                `json:"location_latitude"`
 	LocationLongitude    string                `json:"location_longitude"`
+	PaymentAuthorization *PaymentAuthorization `json:"payment_authorization"`
+	History              []History             `json:"history"`
+	Resource             string                `json:"resource"`
+	Uri                  string                `json:"uri"`
 	Metadata             interface{}           `json:"metadata"`
 	ExpectedOn           time.Time             `json:"expected_on"`
 	CreatedAt            time.Time             `json:"created_at"`
 	UpdatedAt            time.Time             `json:"updated_at"`
-	PaymentAuthorization *PaymentAuthorization `json:"payment_authorization"`
-	History              []History             `json:"history"`
-	Info
 }
 
 type PaymentMethod struct {
-	Id              string      `json:"id"`
-	Resource        string      `json:"resource"`
-	Description     string      `json:"description"`
-	CardBrand       string      `json:"card_brand"`
-	First4Digits    string      `json:"first4_digits"`
-	ExpirationMonth string      `json:"expiration_month"`
-	ExpirationYear  string      `json:"expiration_year"`
-	HolderName      string      `json:"holder_name"`
-	IsActive        bool        `json:"is_active"`
-	IsValid         bool        `json:"is_valid"`
-	IsVerified      bool        `json:"is_verified"`
-	Customer        string      `json:"customer"`
-	Fingerprint     string      `json:"fingerprint"`
-	Metadata        interface{} `json:"metadata"`
-	Uri             string      `json:"uri"`
-	CreatedAt       time.Time   `json:"created_at"`
-	UpdatedAt       time.Time   `json:"updated_at"`
-	Address         *Address    `json:"address"`
-	Checklist       *Checklist  `json:"verification_checklist"`
+	Id               string      `json:"id"`
+	Status           string      `json:"status"`
+	Resource         string      `json:"resource"`
+	Description      string      `json:"description"`
+	CardBrand        string      `json:"card_brand"`
+	First4Digits     string      `json:"first4_digits"`
+	ExpirationMonth  string      `json:"expiration_month"`
+	ExpirationYear   string      `json:"expiration_year"`
+	HolderName       string      `json:"holder_name"`
+	IsActive         bool        `json:"is_active"`
+	IsValid          bool        `json:"is_valid"`
+	IsVerified       bool        `json:"is_verified"`
+	Customer         string      `json:"customer"`
+	Fingerprint      string      `json:"fingerprint"`
+	ReferenceNumber  string      `json:"reference_number"`
+	DocumentNumber   string      `json:"document_number"`
+	Recipient        string      `json:"recipient"`
+	BankCode         string      `json:"bank_code"`
+	Sequence         string      `json:"sequence"`
+	Accepted         bool        `json:"accepted"`
+	Printed          bool        `json:"printed"`
+	Downloaded       bool        `json:"downloaded"`
+	PaidAt           string      `json:"paid_at"`
+	Barcode          string      `json:"barcode"`
+	Url              string      `json:"url"`
+	Uri              string      `json:"uri"`
+	Metadata         interface{} `json:"metadata"`
+	PaymentLimitDate time.Time   `json:"payment_limit_date"`
+	ExpirationDate   time.Time   `json:"expiration_date"`
+	CreatedAt        time.Time   `json:"created_at"`
+	UpdatedAt        time.Time   `json:"updated_at"`
+	Address          *Address    `json:"address"`
+	Checklist        *Checklist  `json:"verification_checklist"`
 }
 
 type PointOfSale struct {
@@ -219,6 +238,7 @@ type History struct {
 
 type TransactionsList struct {
 	Transactions []Transaction `json:"items"`
-	Info
+	Resource     string        `json:"resource"`
+	Uri          string        `json:"uri"`
 	Pagination
 }

@@ -28,11 +28,12 @@ type Marketplace struct {
 	DebitEnabled              bool        `json:"debit_enabled"`
 	DefaultDebit              string      `json:"default_debit"`
 	DefaultCredit             string      `json:"default_credit"`
-	CreatedAt                 time.Time   `json:"created_at"`
-	UpdatedAt                 time.Time   `json:"updated_at"`
 	Customer                  *Customer   `json:"customer"`
 	ApiKeys                   []Key       `json:"api_keys"`
-	Info
+	Resource                  string      `json:"resource"`
+	Uri                       string      `json:"uri"`
+	CreatedAt                 time.Time   `json:"created_at"`
+	UpdatedAt                 time.Time   `json:"updated_at"`
 }
 
 func (c *Client) GetMarketplace() (*Marketplace, error) {

@@ -53,9 +53,10 @@ type CreditCard struct {
 	Address         *Address    `json:"address"`
 	Checklist       *Checklist  `json:"verification_checklist"`
 	Metadata        interface{} `json:"metadata"`
+	Resource        string      `json:"resource"`
+	Uri             string      `json:"uri"`
 	CreatedAt       time.Time   `json:"created_at"`
 	UpdatedAt       time.Time   `json:"updated_at"`
-	Info
 }
 
 type Checklist struct {

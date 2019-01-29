@@ -1,10 +1,5 @@
 package zoop
 
-type Info struct {
-	Resource string `json:"resource"`
-	Uri      string `json:"uri"`
-}
-
 type Pagination struct {
 	Limit      int  `json:"limit"`
 	Offset     int  `json:"offset"`

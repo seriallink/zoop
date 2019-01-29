@@ -21,8 +21,9 @@ type Token struct {
 	Id        string      `json:"id"`
 	Used      bool        `json:"used"`
 	Type      string      `json:"type"`
+	Card      *CreditCard `json:"card"`
+	Resource  string      `json:"resource"`
+	Uri       string      `json:"uri"`
 	CreatedAt time.Time   `json:"created_at"`
 	UpdatedAt time.Time   `json:"updated_at"`
-	Card      *CreditCard `json:"card"`
-	Info
 }

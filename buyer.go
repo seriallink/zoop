@@ -78,13 +78,15 @@ type Buyer struct {
 	DeliveryMethod string      `json:"default_receipt_delivery_method"`
 	Metadata       interface{} `json:"metadata"`
 	Address        *Address    `json:"address"`
+	Resource       string      `json:"resource"`
+	Uri            string      `json:"uri"`
 	CreatedAt      time.Time   `json:"created_at"`
 	UpdatedAt      time.Time   `json:"updated_at"`
-	Info
 }
 
 type BuyersList struct {
-	Buyers []Buyer `json:"items"`
-	Info
+	Buyers   []Buyer `json:"items"`
+	Resource string  `json:"resource"`
+	Uri      string  `json:"uri"`
 	Pagination
 }
