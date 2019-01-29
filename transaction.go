@@ -7,8 +7,11 @@ import (
 )
 
 const (
-	transactionPath   = "marketplaces/%s/transactions"
-	transactionPathId = "marketplaces/%s/transactions/%s"
+	transactionPath    = "marketplaces/%s/transactions"
+	transactionPathId  = "marketplaces/%s/transactions/%s"
+	transactionSeller  = "marketplaces/%s/sellers/%s/transactions"
+	transactionCapture = "marketplaces/%s/transactions/%s/capture"
+	transactionRefund  = "marketplaces/%s/transactions/%s/void"
 )
 
 // Enums
@@ -54,9 +57,29 @@ func (c *Client) NewTransaction(params *TransactionParams) (*Transaction, error)
 	return model, err
 }
 
+func (c *Client) CaptureTransaction(id string, amount int) (*Transaction, error) {
+	model := new(Transaction)
+	params := &Params{"on_behalf_of": c.SellerId, "amount": amount}
+	err := c.Post(fmt.Sprintf(transactionCapture, c.MarketplaceId, id), params, nil, model)
+	return model, err
+}
+
+func (c *Client) RefundTransaction(id string, amount int) (*Transaction, error) {
+	model := new(Transaction)
+	params := &Params{"on_behalf_of": c.SellerId, "amount": amount}
+	err := c.Post(fmt.Sprintf(transactionRefund, c.MarketplaceId, id), params, nil, model)
+	return model, err
+}
+
 func (c *Client) ListMarketplaceTransactions() (*TransactionsList, error) {
 	list := new(TransactionsList)
 	err := c.Get(fmt.Sprintf(transactionPath, c.MarketplaceId), nil, nil, list)
+	return list, err
+}
+
+func (c *Client) ListSellerTransactions() (*TransactionsList, error) {
+	list := new(TransactionsList)
+	err := c.Get(fmt.Sprintf(transactionSeller, c.MarketplaceId, c.SellerId), nil, nil, list)
 	return list, err
 }
 
