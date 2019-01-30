@@ -10,7 +10,7 @@ const (
 	cardPathId = "marketplaces/%s/cards/%s"
 )
 
-func (c *Client) SetCustomerCard(customer, token string) (*CreditCard, error) {
+func (c *Client) LinkCreditCard(customer, token string) (*CreditCard, error) {
 	model := new(CreditCard)
 	params := &Params{"token": token, "customer": customer}
 	err := c.Post(fmt.Sprintf(cardPath, c.MarketplaceId), params, nil, model)
