@@ -135,8 +135,23 @@ type TransactionParams struct {
 }
 
 type PaymentMethodParams struct {
-	ExpirationDate  time.Time `json:"expiration_date,omitempty"`
-	TopInstructions []string  `json:"top_instructions,omitempty"`
+	ExpirationDate      *Date                      `json:"expiration_date,omitempty"`
+	PaymentLimitDate    *Date                      `json:"payment_limit_date,omitempty"`
+	TopInstructions     []string                   `json:"top_instructions,omitempty"`
+	BodyInstructions    []string                   `json:"body_instructions,omitempty"`
+	BillingInstructions *BillingInstructionsParams `json:"billing_instructions,omitempty"`
+}
+
+type BillingInstructionsParams struct {
+	LateFee  *FeeParams  `json:"late_fee,omitempty"`
+	Interest *FeeParams  `json:"interest,omitempty"`
+	Discount []FeeParams `json:"discount,omitempty"`
+}
+
+type FeeParams struct {
+	Mode      string `json:"mode,omitempty"`
+	Amount    int    `json:"amount,omitempty"`
+	LimitDate *Date  `json:"limit_date,omitempty"`
 }
 
 type Transaction struct {
