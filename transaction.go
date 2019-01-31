@@ -23,23 +23,23 @@ type TransactionStatus string
 
 const (
 	// PaymentType
-	CreditType PaymentType = "credit"
-	DebitType  PaymentType = "debit"
-	WalletType PaymentType = "wallet"
-	BoletoType PaymentType = "boleto"
+	TypeCredit PaymentType = "credit"
+	TypeDebit  PaymentType = "debit"
+	TypeWallet PaymentType = "wallet"
+	TypeBoleto PaymentType = "boleto"
 
 	// UsageType
 	SingleUse UsageType = "single_use"
 	Reusable  UsageType = "reusable"
 
 	// SourceType
-	WalletSource       SourceType = "wallet"
-	CardSource         SourceType = "card"
-	CadAndWalletSource SourceType = "card_and_wallet"
-	TokenSource        SourceType = "token"
-	CustomerSource     SourceType = "customer"
-	ThreeDSecureSource SourceType = "three_d_secure"
-	DebitOnlineSource  SourceType = "debit_online"
+	SourceWallet        SourceType = "wallet"
+	SourceCard          SourceType = "card"
+	SourceCardAndWallet SourceType = "card_and_wallet"
+	SourceToken         SourceType = "token"
+	SourceCustomer      SourceType = "customer"
+	SourceThreeDSecure  SourceType = "three_d_secure"
+	SourceDebitOnline   SourceType = "debit_online"
 
 	// InstallmentPlanType
 	InterestFree InstallmentPlanType = "interest_free"
