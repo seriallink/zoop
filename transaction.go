@@ -19,6 +19,7 @@ type PaymentType string
 type UsageType string
 type SourceType string
 type InstallmentPlanType string
+type TransactionStatus string
 
 const (
 	// PaymentType
@@ -43,6 +44,18 @@ const (
 	// InstallmentPlanType
 	InterestFree InstallmentPlanType = "interest_free"
 	WithInterest InstallmentPlanType = "with_interest"
+
+	// TransactionStatus
+	StatusNew           = "new"
+	StatusPending       = "pending"
+	StatusPreAuthorized = "pre_authorized"
+	StatusSucceeded     = "succeeded"
+	StatusFailed        = "failed"
+	StatusReversed      = "reversed"
+	StatusCanceled      = "canceled"
+	StatusRefunded      = "refunded"
+	StatusDispute       = "dispute"
+	StatusChargedBack   = "charged_back"
 )
 
 func (c *Client) GetTransaction(id string) (*Transaction, error) {
