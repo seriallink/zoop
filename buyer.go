@@ -47,14 +47,16 @@ func (c *Client) ListBuyer() (*BuyersList, error) {
 }
 
 type BuyerParams struct {
-	FirstName   string   `json:"first_name,omitempty"`
-	LastName    string   `json:"last_name,omitempty"`
-	Email       string   `json:"email,omitempty"`
-	PhoneNumber string   `json:"phone_number,omitempty"`
-	TaxpayerId  string   `json:"taxpayer_id,omitempty"`
-	BirthDate   string   `json:"birthdate,omitempty"`
-	Description string   `json:"description,omitempty"`
-	Address     *Address `json:"address,omitempty"`
+	FirstName     string   `json:"first_name,omitempty"`
+	LastName      string   `json:"last_name,omitempty"`
+	Email         string   `json:"email,omitempty"`
+	PhoneNumber   string   `json:"phone_number,omitempty"`
+	TaxpayerId    string   `json:"taxpayer_id,omitempty"`
+	BirthDate     string   `json:"birthdate,omitempty"`
+	Description   string   `json:"description,omitempty"`
+	DefaultDebit  string   `json:"default_debit"`
+	DefaultCredit string   `json:"default_credit"`
+	Address       *Address `json:"address,omitempty"`
 }
 
 type Buyer struct {
