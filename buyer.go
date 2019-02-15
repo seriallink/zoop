@@ -54,8 +54,8 @@ type BuyerParams struct {
 	TaxpayerId    string   `json:"taxpayer_id,omitempty"`
 	BirthDate     string   `json:"birthdate,omitempty"`
 	Description   string   `json:"description,omitempty"`
-	DefaultDebit  string   `json:"default_debit"`
-	DefaultCredit string   `json:"default_credit"`
+	DefaultDebit  string   `json:"default_debit,omitempty"`
+	DefaultCredit string   `json:"default_credit,omitempty"`
 	Address       *Address `json:"address,omitempty"`
 }
 
